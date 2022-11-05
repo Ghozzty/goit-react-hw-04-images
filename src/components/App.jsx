@@ -1,16 +1,42 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      My HW 3-2
-    </div>
-  );
-};
+import { Component } from 'react';
+import css from './App.module.css';
+
+import { Searchbar } from './Searchbar/Searchbar';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Modal } from './Modal/Modal';
+
+export class App extends Component {
+  state = {
+    query: '',
+    showModal: false,
+    srcModal: '',
+  };
+
+  submitEvent = name => {
+    this.setState({ query: name });
+  };
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
+  };
+
+  onGalleryItemClick = src => {
+    this.toggleModal();
+    this.setState({ srcModal: src });
+  };
+
+  render() {
+    return (
+      <div className={css.appStyle}>
+        {this.state.showModal && (
+          <Modal src={this.state.srcModal} close={this.toggleModal} />
+        )}
+        <Searchbar submitEvt={this.submitEvent} />
+        <ImageGallery
+          query={this.state.query}
+          click={this.onGalleryItemClick}
+        />
+      </div>
+    );
+  }
+}
