@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 import css from './App.module.css';
 
 import { Searchbar } from './Searchbar/Searchbar';
@@ -36,6 +37,7 @@ export class App extends Component {
           query={this.state.query}
           click={this.onGalleryItemClick}
         />
+        <ToastContainer autoClose={2000} position={'top-left'} />
       </div>
     );
   }

@@ -7,12 +7,12 @@ export const Loader = () => {
       <Oval
         height={80}
         width={80}
-        color="blue"
+        color="#ff9d00"
         wrapperStyle={{}}
         wrapperClass={css.spinerItem}
         visible={true}
         ariaLabel="oval-loading"
-        secondaryColor="#7f9df2"
+        secondaryColor="#faba54"
         strokeWidth={3}
         strokeWidthSecondary={4}
       />

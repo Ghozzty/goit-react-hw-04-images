@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import css from './Searchbar.module.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class Searchbar extends Component {
   state = {
@@ -15,13 +17,15 @@ export class Searchbar extends Component {
     e.preventDefault();
 
     if (this.state.searchQuery.trim() === '') {
-      alert('no no no');
+      toast.warning('please input the correct query');
+      e.target.reset();
       return;
     }
 
     this.props.submitEvt(this.state.searchQuery);
 
     this.setState({ searchQuery: '' });
+    e.target.reset();
   };
 
   render() {
