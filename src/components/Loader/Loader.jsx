@@ -5,8 +5,8 @@ export const Loader = () => {
   return (
     <div className={css.spiner}>
       <Oval
-        height={80}
-        width={80}
+        height={40}
+        width={40}
         color="#ff9d00"
         wrapperStyle={{}}
         wrapperClass={css.spinerItem}
