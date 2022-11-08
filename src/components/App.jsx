@@ -28,6 +28,7 @@ export class App extends Component {
     currentPage: 1,
     showModal: false,
     srcModal: '',
+    totalImg: null,
   };
 
   componentDidUpdate(_, prevState) {
@@ -55,6 +56,7 @@ export class App extends Component {
         this.setState(({ queryArr }) => ({
           queryArr: [...queryArr, ...res.data.hits],
           status: 'resolved',
+          totalImg: res.data.total,
         }));
       });
     } catch (error) {
@@ -65,20 +67,19 @@ export class App extends Component {
   // servise
 
   clearStateFn = () => {
-    this.setState({ queryArr: [], currentPage: 1, srcModal: '', query: '' });
+    this.setState({
+      queryArr: [],
+      currentPage: 1,
+      srcModal: '',
+      query: '',
+      totalImg: null,
+    });
   };
 
   onClickBtnFn = e => {
     this.setState(prevState => ({
       currentPage: prevState.currentPage + 1,
     }));
-
-    setTimeout(() => {
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth',
-      });
-    }, 350);
   };
 
   submitEvent = name => {
@@ -96,7 +97,7 @@ export class App extends Component {
   };
 
   render() {
-    const { queryArr, status, showModal, srcModal } = this.state;
+    const { queryArr, status, showModal, srcModal, totalImg } = this.state;
     return (
       <div className={css.appStyle}>
         {showModal && <Modal src={srcModal} close={this.toggleModal} />}
@@ -115,7 +116,9 @@ export class App extends Component {
 
         {status === 'pending' && <Loader />}
 
-        {queryArr.length > 0 && <Button onClick={this.onClickBtnFn} />}
+        {queryArr.length > 0 && queryArr.length < totalImg && (
+          <Button onClick={this.onClickBtnFn} />
+        )}
 
         <ToastContainer autoClose={2000} position={'top-left'} />
       </div>
