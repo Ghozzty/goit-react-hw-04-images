@@ -44,7 +44,7 @@ export class Searchbar extends Component {
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Search images and photos"
+            placeholder="Search images and photos hw-4-3"
           />
         </form>
       </header>
