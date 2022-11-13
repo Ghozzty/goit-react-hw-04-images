@@ -1,29 +1,24 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import css from './ImageGallery.module.css';
 
-export class ImageGallery extends Component {
-  render() {
-    const queryArr = this.props.queryArr;
-
-    return (
-      <div className={css.wrapper}>
-        <ul className={css.gallery}>
-          {queryArr.map(({ id, webformatURL, largeImageURL, tags }) => (
-            <ImageGalleryItem
-              key={id}
-              webformatURL={webformatURL}
-              largeImageURL={largeImageURL}
-              tags={tags}
-              click={this.props.click}
-            />
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+export const ImageGallery = ({ queryArr, click }) => {
+  return (
+    <div className={css.wrapper}>
+      <ul className={css.gallery}>
+        {queryArr.map(({ id, webformatURL, largeImageURL, tags }) => (
+          <ImageGalleryItem
+            key={id}
+            webformatURL={webformatURL}
+            largeImageURL={largeImageURL}
+            tags={tags}
+            click={click}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 ImageGallery.propTypes = {
   queryArr: PropTypes.arrayOf(
